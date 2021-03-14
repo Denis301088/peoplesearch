@@ -75,6 +75,7 @@ public class TelegramFacade {
             default:
                 botState = userDataCache.getUsersCurrentBotState(userId);
                 break;
+
         }
 
         userDataCache.setUsersCurrentBotState(userId, botState);//Устанавливаем состояние,которое мы получили в результате

@@ -52,7 +52,8 @@ public class ButtonDataRetrieval implements InputButtonsHandler {
 //        BotState botState = userDataCache.getUsersCurrentBotState(userId);
         UserProfileData userProfileDataFromButtonId=userDataCache.getUserProfilesData(callbackQuery.getFrom().getId(),callbackQuery.getData());
 
-        if(userProfileDataFromButtonId.isAnswerFormed()/*profileData.isAnswerFormed()*/){
+
+        if(userProfileDataFromButtonId.isAnswerFormed()){
 
             DeleteMessage delete = new DeleteMessage();
             delete.setChatId(String.valueOf(chatId));
@@ -70,10 +71,13 @@ public class ButtonDataRetrieval implements InputButtonsHandler {
             userDataCache.removeUserProfilesData(userId,callbackQuery.getData());
             return replyToUser;
         }
+
         AnswerCallbackQuery answerCallbackQuery=new AnswerCallbackQuery();
+//            answerCallbackQuery.setCacheTime(10);
         answerCallbackQuery.setCallbackQueryId(callbackQuery.getId());
         answerCallbackQuery.setShowAlert(false);
         answerCallbackQuery.setText("Запрос еще не обработан");
+
 
         return answerCallbackQuery;
 

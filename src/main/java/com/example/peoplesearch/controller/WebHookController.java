@@ -33,11 +33,14 @@ public class WebHookController {
     @PostMapping("/")
     public BotApiMethod<?> onUpdateReceived(@RequestBody Update update) {
 
-        User user=update.getMessage().getFrom();
-        if(!userRepoService.isNewUser(user))
-            userRepoService.updateUserDataBase(user);
-        else
-            userRepoService.addUserDataBase(user);
+        if (update.getMessage()!=null){
+            User user=update.getMessage().getFrom();
+            if(!userRepoService.isNewUser(user))
+                userRepoService.updateUserDataBase(user);
+            else
+                userRepoService.addUserDataBase(user);
+
+        }
 
         return telegrambot.onWebhookUpdateReceived(update);
     }
