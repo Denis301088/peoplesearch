@@ -110,6 +110,7 @@ public class DataRetrievalService {
 //            options.setProxy(proxy);
 //            options.addArguments("--user-data-dir=C:\\Users\\RET\\AppData\\Local\\Google\\Telegram\\" + id);
 
+        options.setHeadless(true);
         options.addArguments("--disable-blink-features=AutomationControlled");
         ChromeDriver driver=new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
