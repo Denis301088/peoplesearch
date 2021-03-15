@@ -28,10 +28,13 @@ public class DataRetrievalService {
     void initializationWebDriver(){
 
         //45.154.59.14:8000 // 45.139.111.146:8000
-        proxyList.add("45.154.59.14:8000");
-        proxyList.add("45.139.111.146:8000");
-        for (String proxy:proxyList){
-            webDrivers.add(initialization(proxy));
+//        proxyList.add("45.154.59.14:8000");
+//        proxyList.add("45.139.111.146:8000");
+//        for (String proxy:proxyList){
+//            webDrivers.add(initialization(proxy));
+//        }
+        for (int i = 0; i < 3; i++) {
+            webDrivers.add(initialization(""));
         }
         semaphore=new Semaphore(proxyList.size());
     }
