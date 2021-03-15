@@ -6,10 +6,16 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = java_version
+targetCompatibility = java_version
 
 repositories {
 	mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = java_version
+    targetCompatibility = java_version
 }
 
 dependencies {
