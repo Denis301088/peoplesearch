@@ -30,9 +30,9 @@ public class DataRetrievalService {
         //45.154.59.14:8000 // 45.139.111.146:8000
         proxyList.add("45.154.59.14:8000");
         proxyList.add("45.139.111.146:8000");
-//        for (String proxy:proxyList){
-//            webDrivers.add(initialization(proxy));
-//        }
+        for (String proxy:proxyList){
+            webDrivers.add(initialization(proxy));
+        }
         semaphore=new Semaphore(proxyList.size());
     }
 
