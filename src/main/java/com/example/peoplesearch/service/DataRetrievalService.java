@@ -104,9 +104,9 @@ public class DataRetrievalService {
     private WebDriver initialization(String host)  {
 
 
-        Proxy proxy=new Proxy().setHttpProxy(host).
-                setFtpProxy(host).
-                setSslProxy(host).setProxyType(Proxy.ProxyType.MANUAL);
+//        Proxy proxy=new Proxy().setHttpProxy(host).
+//                setFtpProxy(host).
+//                setSslProxy(host).setProxyType(Proxy.ProxyType.MANUAL);
 
         ChromeOptions options=new ChromeOptions();
 //            options.setProxy(proxy);
