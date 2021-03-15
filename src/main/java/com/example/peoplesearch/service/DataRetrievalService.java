@@ -31,7 +31,6 @@ public class DataRetrievalService {
         proxyList.add("");
         proxyList.add("");
         proxyList.add("");
-        proxyList.add("");
         for (String proxy:proxyList){
             webDrivers.add(initialization(proxy));
         }
