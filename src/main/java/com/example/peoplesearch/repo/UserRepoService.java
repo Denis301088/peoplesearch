@@ -8,16 +8,14 @@ import org.telegram.telegrambots.meta.api.objects.User;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 public class UserRepoService {
 
     private UserRepo userRepo;
-
     private List<UserBot> userBots;
-
-    private Set<User> userSet;
 
     public UserRepoService(UserRepo userRepo, List<UserBot> userBots) {
         this.userRepo = userRepo;
@@ -27,34 +25,32 @@ public class UserRepoService {
     @Cacheable(value = "users",key = "{#user.id, #user.firstName, #user.lastName, #user.userName}")//, #user.firstName, #user.lastName, #user.userName
     public UserBot addUserDataBase(User user){
         System.out.println("Выполнил Cacheable");
-        return createUser(user);
+        return userRepo.save(createUserBot(user));
     }
 
     @CachePut(value = "users",key="{#user.id, #user.firstName, #user.lastName, #user.userName}")
     public UserBot updateUserDataBase(User user){
         System.out.println("Выполнил CachePut");
+        UserBot userBot=userRepo.save(createUserBot(user));
         userBots=Collections.unmodifiableList(userRepo.findAll());//отсутствие volataile у userBots не повлияет на потокобезопасность
-        return createUser(user);
+        return userBot;
     }
 
     public boolean isNewUser(User user){
 
-        UserBot userBot=userBots.stream().filter(x->x.getId().equals(user.getId())).findFirst().get();
+        Optional<UserBot> opt=userBots.stream().filter(x->x.getId().equals(user.getId())).findFirst();
 
-        return userBot!=null && userBot.getFirstName().equals(user.getFirstName())
-                && userBot.getLastName().equals(user.getLastName())
-                && userBot.getUserName().equals(user.getUserName());
+        return opt.isPresent() && opt.get().equals(createUserBot(user));
 
     }
 
-    private UserBot createUser(User user) {
+    private UserBot createUserBot(User user) {
         UserBot userBot=new UserBot();
         userBot.setId(user.getId());
         userBot.setFirstName(user.getFirstName());
         userBot.setLastName(user.getLastName());
         userBot.setUserName(user.getUserName());
-        userRepo.save(userBot);
-        return userRepo.save(userBot);
+        return userBot;
     }
 
 

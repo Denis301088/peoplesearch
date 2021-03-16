@@ -4,10 +4,7 @@ import com.example.peoplesearch.botapi.TelegramFacade;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class PeopleSearchBot extends TelegramWebhookBot {
 
@@ -21,8 +18,6 @@ public class PeopleSearchBot extends TelegramWebhookBot {
 
     public PeopleSearchBot(TelegramFacade telegramFacade, DefaultBotOptions options) {
 
-//        super(options);
-
         this.telegramFacade = telegramFacade;
     }
 
@@ -34,9 +29,7 @@ public class PeopleSearchBot extends TelegramWebhookBot {
     @Override
     public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
 
-
         return telegramFacade.handleUpdate(update);
-
     }
 
     @Override

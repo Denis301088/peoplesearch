@@ -56,9 +56,6 @@ public class UserDataCache implements DataCache {
 
     public void setUserProfilesData(int userId, String callBackData, UserProfileData userProfileData) {
 
-//        if(userProfilesData.get(userId)==null){
-//            userProfilesData.put(userId,new HashMap<>());
-//        }
         userProfilesData.get(userId).put(callBackData,userProfileData);
     }
 

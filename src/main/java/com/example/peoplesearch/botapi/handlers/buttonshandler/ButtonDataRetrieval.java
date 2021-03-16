@@ -2,7 +2,6 @@ package com.example.peoplesearch.botapi.handlers.buttonshandler;
 
 import com.example.peoplesearch.botapi.BotState;
 import com.example.peoplesearch.botapi.InputButtonsHandler;
-import com.example.peoplesearch.botapi.InputMessageHandler;
 import com.example.peoplesearch.botapi.handlers.fillingprofile.UserProfileData;
 import com.example.peoplesearch.cache.UserDataCache;
 import com.example.peoplesearch.domain.PeopleSearchBot;
@@ -13,14 +12,7 @@ import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
-import org.telegram.telegrambots.meta.api.objects.Message;
-import org.telegram.telegrambots.meta.api.objects.MessageEntity;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /*
@@ -48,10 +40,8 @@ public class ButtonDataRetrieval implements InputButtonsHandler {
 
         int userId = callbackQuery.getFrom().getId();
         long chatId = callbackQuery.getMessage().getChatId();
-//        UserProfileData profileData=userDataCache.getUserProfileData(userId);
-//        BotState botState = userDataCache.getUsersCurrentBotState(userId);
-        UserProfileData userProfileDataFromButtonId=userDataCache.getUserProfilesData(callbackQuery.getFrom().getId(),callbackQuery.getData());
 
+        UserProfileData userProfileDataFromButtonId=userDataCache.getUserProfilesData(callbackQuery.getFrom().getId(),callbackQuery.getData());
 
         if(userProfileDataFromButtonId.isAnswerFormed()){
 
@@ -73,11 +63,9 @@ public class ButtonDataRetrieval implements InputButtonsHandler {
         }
 
         AnswerCallbackQuery answerCallbackQuery=new AnswerCallbackQuery();
-//            answerCallbackQuery.setCacheTime(10);
         answerCallbackQuery.setCallbackQueryId(callbackQuery.getId());
         answerCallbackQuery.setShowAlert(false);
         answerCallbackQuery.setText("Запрос еще не обработан");
-
 
         return answerCallbackQuery;
 

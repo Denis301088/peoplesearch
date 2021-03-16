@@ -1,13 +1,9 @@
 package com.example.peoplesearch.botapi;
 
-import com.example.peoplesearch.domain.PeopleSearchBot;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -37,12 +33,6 @@ public class BotStateContextForMessages implements BotStateContext<InputMessageH
         //2)После того как получили состояние,вызываем его обработку методом handle
         return currentMessageHandler==null?null:currentMessageHandler.handle(message);
     }
-
-//    public BotApiMethod<?> processInputMessage(BotState currentState, CallbackQuery callbackQuery) {
-//        InputMessageHandler currentMessageHandler = findMessageHandler(currentState);
-//        //2)После того как получили состояние,вызываем его обработку методом handle
-//        return currentMessageHandler.handle(callbackQuery);
-//    }
 
     private InputMessageHandler findMessageHandler(BotState currentState) {
 

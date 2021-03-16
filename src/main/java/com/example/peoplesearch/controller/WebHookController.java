@@ -37,8 +37,8 @@ public class WebHookController {
             User user=update.getMessage().getFrom();
             if(!userRepoService.isNewUser(user))
                 userRepoService.updateUserDataBase(user);
-            else
-                userRepoService.addUserDataBase(user);
+
+            userRepoService.addUserDataBase(user);
 
         }
 
