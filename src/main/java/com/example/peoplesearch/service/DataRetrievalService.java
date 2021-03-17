@@ -50,7 +50,7 @@ public class DataRetrievalService {
             try {
 
 //           semaphore.acquire();
-                driver.get("https://zhytel.rosfirm.info/" + userProfileData.getCityFotBrowser());
+                driver.get("https://gytyl.rosfirm.info/" + userProfileData.getCityFotBrowser());
                 Thread.sleep(TimeUnit.SECONDS.toMillis(2));
                 driver.findElement(By.name("fio")).sendKeys(userProfileData.getSurName()
                         + " " + userProfileData.getName()
