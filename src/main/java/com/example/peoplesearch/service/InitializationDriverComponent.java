@@ -19,7 +19,7 @@ public class InitializationDriverComponent {
     public void initialization(){
 
         ChromeOptions options=new ChromeOptions();
-//        options.setHeadless(true);
+        options.setHeadless(true);
         options.addArguments("--disable-blink-features=AutomationControlled");
         ChromeDriver driver=new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
